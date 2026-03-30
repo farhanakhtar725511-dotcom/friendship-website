@@ -1,132 +1,53 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For My Best Friend</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #ffd6e0;
-      color: #333;
-      text-align: center;
-      overflow: hidden;
-    }
-    .page { display: none; padding: 50px; }
-    .active { display: block; }
+<title>Start</title>
 
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: white;
-      color: black;
-      cursor: pointer;
-      margin: 10px;
-      border-radius: 10px;
-      font-size: 16px;
-      position: relative;
-    }
-
-    .typing {
-      font-size: 20px;
-      border-right: 2px solid black;
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .heart {
-      position: absolute;
-      color: red;
-      font-size: 20px;
-      animation: float 4s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-800px); opacity: 0; }
-    }
-  </style>
-</head>
-
-<body>
-
-<div id="page1" class="page active">
-  <h1>For My Best Friend 💜</h1>
-  <p class="typing" id="typingText"></p>
-  <button onclick="nextPage(2)">Start</button>
-</div>
-
-<div id="page2" class="page">
-  <h1>Our Beginning ✨</h1>
-  <p>Jab hum mile the... tab pata nahi tha ki tu itni important ban jayegi.</p>
-  <button onclick="nextPage(3)">Next</button>
-</div>
-
-<div id="page3" class="page">
-  <h1>Memories 💫</h1>
-  <p>Every moment with you is special ❤️</p>
-  <button onclick="nextPage(4)">Next</button>
-</div>
-
-<div id="page4" class="page">
-  <h1>What You Mean To Me 💖</h1>
-  <p>You are not just my best friend, you are my comfort zone 😊</p>
-  <button onclick="nextPage(5)">Next</button>
-</div>
-
-<div id="page5" class="page">
-  <h1>Thank You 💓</h1>
-  <p>Thank you for being in my life 💓</p>
-  <p>Happy 1 year of our friendship 🎉</p>
-
-  <h2>Will you always be my best friend? 💖</h2>
-  <button onclick="showHearts(); showMessage()">Yes 💕</button>
-  <button id="noBtn" onmouseover="moveNo()">No 😅</button>
-
-  <h3 id="yesMsg"></h3>
-</div>
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background:#ffd6e0;
+    color:#333;
+    text-align:center;
+}
+.container {
+    margin-top:120px;
+    animation: fade 1.5s;
+}
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+button {
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d88;
+    color:white;
+    font-size:16px;
+}
+#noBtn {
+    position:absolute;
+}
+</style>
 
 <script>
-function nextPage(n){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById("page"+n).classList.add("active");
+function typeWriter(id, text, i=0) {
+    if (i < text.length) {
+        document.getElementById(id).innerHTML += text.charAt(i);
+        setTimeout(function(){ typeWriter(id, text, i+1); }, 50);
+    }
 }
-
-function showHearts(){
-  for(let i=0;i<30;i++){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.top="100vh";
-    heart.style.fontSize=(Math.random()*20+20)+"px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),4000);
-  }
-}
-
-function moveNo(){
-  let btn=document.getElementById("noBtn");
-  btn.style.position="absolute";
-  btn.style.top=Math.random()*80+"vh";
-  btn.style.left=Math.random()*80+"vw";
-}
-
-function showMessage(){
-  document.getElementById("yesMsg").innerText="Thank you potli, you said yes 💖";
-}
-
-let text="31 March… the day everything changed 💫";
-let i=0;
-function typing(){
-  if(i<text.length){
-    document.getElementById("typingText").innerHTML+=text.charAt(i);
-    i++;
-    setTimeout(typing,50);
-  }
-}
-typing();
 </script>
 
+</head>
+<body onload="typeWriter('text','31 March... everything started 💖')">
+<div class="container">
+<h1 id="text"></h1>
+<br><br>
+<button onclick="location.href='page2.html'">Start ➡️</button>
+</div>
 </body>
 </html>
