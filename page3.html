@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shayari</title>
+
+<style>
+body {
+    margin:0;
+    font-family: Arial;
+    background:#ffd6e0;
+    color:#333;
+    text-align:center;
+}
+.container {
+    margin-top:120px;
+    animation: fade 1.5s;
+}
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+button {
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d88;
+    color:white;
+    font-size:16px;
+}
+#noBtn {
+    position:absolute;
+}
+</style>
+
+<script>
+function typeWriter(id, text, i=0) {
+    if (i < text.length) {
+        document.getElementById(id).innerHTML += text.charAt(i);
+        setTimeout(function(){ typeWriter(id, text, i+1); }, 50);
+    }
+}
+</script>
+
+</head>
+<body onload="typeWriter('text','Dosti ek ehsaas hai, jo lafzon me bayaan nahi hota... 💖')">
+<div class="container">
+<h2 id="text"></h2>
+<br><br>
+<button onclick="location.href='page4.html'">Next ➡️</button>
+</div>
+</body>
+</html>
